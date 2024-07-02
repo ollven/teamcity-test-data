@@ -27,7 +27,7 @@ create(DslContext.projectId, BuildType({
     steps {
         script {
             scriptContent = """
-                echo "##teamcity[testRetrySupport enabled 'true']"
+                echo "##teamcity[testRetrySupport enabled="true"]"
                 ./generate_fake_run.sh %system.ALL_TESTS_NUM% %system.FAILED_TESTS_PERCENTAGE% %system.TEST_LOG_LINES_NUM%
             """.trimIndent()
         }
