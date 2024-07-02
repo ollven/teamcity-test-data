@@ -16,5 +16,11 @@ changeBuildType(RelativeId("Test")) {
         update {
             param("system.ALL_TESTS_NUM", "50")
         }
+        expect {
+            param("system.TEST_LOG_LINES_NUM", "100")
+        }
+        update {
+            param("system.TEST_LOG_LINES_NUM", "10")
+        }
     }
 }
