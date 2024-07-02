@@ -9,7 +9,7 @@ See the README.md in the appropriate config directory.
 ```
 https://github.com/JetBrains/teamcity-test-data.git
 ```
-2. Select import settings from .teamcity/settings.kts option 
+2. Select import settings from .teamcity/settings.kts option     
 
 
 
