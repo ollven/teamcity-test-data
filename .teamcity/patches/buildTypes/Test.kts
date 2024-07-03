@@ -1,6 +1,8 @@
 package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2018_2.*
+import jetbrains.buildServer.configs.kotlin.v2018_2.buildSteps.ScriptBuildStep
+import jetbrains.buildServer.configs.kotlin.v2018_2.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2018_2.ui.*
 
 /*
@@ -21,6 +23,21 @@ changeBuildType(RelativeId("Test")) {
         }
         update {
             param("system.TEST_LOG_LINES_NUM", "10")
+        }
+    }
+
+    expectSteps {
+        script {
+            scriptContent = "./generate_fake_run.sh %system.ALL_TESTS_NUM% %system.FAILED_TESTS_PERCENTAGE% %system.TEST_LOG_LINES_NUM%"
+        }
+    }
+    steps {
+        update<ScriptBuildStep>(0) {
+            clearConditions()
+            scriptContent = """
+                ./generate_fake_run.sh %system.ALL_TESTS_NUM% %system.FAILED_TESTS_PERCENTAGE% %system.TEST_LOG_LINES_NUM%
+                cat a.txt
+            """.trimIndent()
         }
     }
 }
